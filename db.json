@@ -1,0 +1,16 @@
+{
+  "tarefas": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "status": "done",
+      "category": "books"
+    },
+    {
+      "title": "Aula",
+      "status": "done",
+      "category": "redação",
+      "id": 2
+    }
+  ]
+}
