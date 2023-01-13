@@ -1,0 +1,17 @@
+body{
+    background-color: #1B262C;
+    color:#BBE1FA ;
+}
+.App-titulo{
+    font-family: Kayak Sans ;
+    font-size: 3.75rem;
+    text-align: center
+    ;
+    margin-top: 2%;
+    margin-bottom:0.8%;
+}
+.App-main{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
