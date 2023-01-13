@@ -1,0 +1,19 @@
+.Formularios-section{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.Formularios-addButton{
+    margin-left:1%
+}
+.Formularios-form{
+    display: flex;
+    flex-direction:row;
+    margin-right: 3%;
+    margin-left: 2%;
+    
+
+}
+.Formularios-textField{
+    width: 30rem;
+}
