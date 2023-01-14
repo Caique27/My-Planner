@@ -1,32 +1,41 @@
 import React, { useState, useEffect } from "react";
+import "./App.css";
 import Lista from "./components/Lista";
-import {busca,adicionar,atualizar,excluir} from "./axios/api.js"
+import { ThemeProvider } from "@mui/material";
+import Formularios from "./components/Formularios";
+import theme from "./assets/themes/theme.js";
+import {buscarDados, criarCategoria, criarTarefa} from "./axios/actions.js";
 
 function App() {
+  //const [dados,setDados] = useState("")
+  const [categorias, setCategorias] = useState([]);
 
-  const [dados,setDados] = useState("")
-  
   useEffect(() => {
-    
-    const atualizarDados = async()=>{
-         setDados( await busca("/tarefas"))
-    }
-      
-    atualizarDados()
-    
-      console.log('useEffect chamado')
+    const atualizarDados = async () => {
+      setCategorias(await buscarDados());
+    };
+
+    atualizarDados();
+
+    console.log(categorias);
   }, []);
 
   return (
-    <div>
-    <h1>
-      Este é o app
-    </h1>
-    <section>
-      <Lista data={dados}/>
-      
-    </section>
-    </div>
+    <ThemeProvider theme={theme}>
+      <div>
+        <header>
+          <h1 className="App-titulo">My Planner.</h1>
+        </header>
+        <section>
+          <Formularios data={categorias} addCategoria={criarCategoria} addTarefa={criarTarefa}/>
+        </section>
+        <main className="App-main">
+          {categorias.map((categoria) => (
+            <Lista data={categoria} />
+          ))}
+        </main>
+      </div>
+    </ThemeProvider>
   );
 }
 

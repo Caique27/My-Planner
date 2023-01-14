@@ -7,11 +7,11 @@ export const busca = async (url) => {
   const resposta = await api.get(url);
   return resposta.data;
 };
-export const adicionar = async (url, novaTarefa) => {
-  await api.post(url, novaTarefa);
+export const adicionar = async (url, novaCategoria) => {
+  await api.post(url, novaCategoria);
 };
-export const atualizar = async (url,alteracoesTarefa)=>{
-  await api.put(url,alteracoesTarefa)
+export const atualizar = async (url,alteracoesCategoria)=>{
+  await api.put(url,alteracoesCategoria)
 };
 export const excluir = async(url)=>{
   await api.delete(url)

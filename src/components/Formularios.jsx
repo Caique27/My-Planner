@@ -1,18 +1,18 @@
 import "./Formularios.css"
-import React from "react";
+import React, {useState} from "react";
 import { Fab, TextField, Select, MenuItem, Button } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 
 function Formularios(props) {
 
-  var nomeCategoria;
+  const[nomeCategoria, setNomeCategoria] = useState('')
 
   function enviarTarefa() {
     console.log("tarefa enviada");
   }
-  function enviarCategoria() {
-    console.log("categoria enviada");
-    props.addCategoria()
+  function enviarCategoria(nome) {
+    console.log("o nome da categoria enviada é", nome);
+    props.addCategoria(nome)
   }
   return (
     <section className="Formularios-section">
@@ -79,7 +79,7 @@ function Formularios(props) {
           variant="outlined"
           color="fourth"
           focused
-          onChange={(event)=>{nomeCategoria= event.target.value}}
+          onChange={(event)=>{setNomeCategoria(event.target.value) }}
         ></TextField>
         
         <Fab
@@ -87,7 +87,7 @@ function Formularios(props) {
           color="fourth"
           aria-label="add"
           onClick={(event) => {
-            enviarCategoria();
+            enviarCategoria(nomeCategoria);
             event.preventDefault();
           }}
         >
