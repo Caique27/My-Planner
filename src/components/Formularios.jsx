@@ -1,18 +1,21 @@
-import "./Formularios.css"
-import React, {useState} from "react";
-import { Fab, TextField, Select, MenuItem, Button } from "@mui/material";
+import "./Formularios.css";
+import React, { useState } from "react";
+import { Fab, TextField, Select, MenuItem } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 
+
 function Formularios(props) {
+  const [nomeCategoria, setNomeCategoria] = useState("");
+  const [nomeTarefa, setNomeTarefa] = useState("");
+  const [categoriaEscolhida, setCategoriaEscolhida] = useState("");
 
-  const[nomeCategoria, setNomeCategoria] = useState('')
-
-  function enviarTarefa() {
+  function enviarTarefa(nome, categoriaEscolhida) {
+    props.addTarefa(nome,categoriaEscolhida)
     console.log("tarefa enviada");
   }
   function enviarCategoria(nome) {
     console.log("o nome da categoria enviada é", nome);
-    props.addCategoria(nome)
+    props.addCategoria(nome);
   }
   return (
     <section className="Formularios-section">
@@ -23,42 +26,47 @@ function Formularios(props) {
           variant="outlined"
           color="fourth"
           focused
-          sx={{input:{color:"white"}}}
+          sx={{ input: { color: "white" } }}
+          onChange={(event)=>{setNomeTarefa(event.target.value)}}
         ></TextField>
+
         <Select
-        labelStyle={{ color: '#BBE1FA' }}
-        sx={{
-          width:"13rem",
-          color: "white",
-          '.MuiOutlinedInput-notchedOutline': {
-            borderColor: '#BBE1FA',
-          },
-          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-            borderColor: '#BBE1FA',
-          },
-          '&:hover .MuiOutlinedInput-notchedOutline': {
-            borderColor: '#BBE1FA',
-          },
-          '.MuiSvgIcon-root ': {
-            fill: "#BBE1FA !important",
-          }
-        }}
-          
-          value={10}
-          label="Age"
+          labelStyle={{ color: "#BBE1FA" }}
+          color="fourth"
+          sx={{
+            width: "13rem",
+            color: "white",
+            ".MuiOutlinedInput-notchedOutline": {
+              borderColor: "#BBE1FA",
+            },
+            "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+              borderColor: "#BBE1FA",
+            },
+            "&:hover .MuiOutlinedInput-notchedOutline": {
+              borderColor: "#BBE1FA",
+            },
+            ".MuiSvgIcon-root ": {
+              fill: "#BBE1FA !important",
+            },
+          }}
+          value={categoriaEscolhida}
+          label="Categoria"
           variant="outlined"
-         // onChange={handleChange}
+          onChange={(event) => {
+            setCategoriaEscolhida(event.target.value);
+          }}
         >
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          {props.nomesCategorias.map((categoria) => (
+            <MenuItem value={categoria}>{categoria}</MenuItem>
+          ))}
         </Select>
+
         <Fab
           className="Formularios-addButton"
           color="fourth"
           aria-label="add"
           onClick={(event) => {
-            enviarCategoria();
+            enviarTarefa(nomeTarefa, categoriaEscolhida);
             event.preventDefault();
           }}
         >
@@ -66,7 +74,6 @@ function Formularios(props) {
         </Fab>
       </form>
       <form
-      
         className="Formularios-form"
         onSubmit={(event) => {
           enviarCategoria();
@@ -79,9 +86,11 @@ function Formularios(props) {
           variant="outlined"
           color="fourth"
           focused
-          onChange={(event)=>{setNomeCategoria(event.target.value) }}
+          onChange={(event) => {
+            setNomeCategoria(event.target.value);
+          }}
         ></TextField>
-        
+
         <Fab
           className="Formularios-addButton"
           color="fourth"
