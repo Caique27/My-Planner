@@ -1,16 +1,112 @@
 {
-  "tarefas": [
+  "categorias": [
     {
       "id": 1,
-      "title": "json-server",
-      "status": "done",
-      "category": "books"
+      "nome": "livros",
+      "tarefas": [
+        {
+          "id": 1,
+          "title": "json-server",
+          "status": "done",
+          "category": "livros"
+        },
+        {
+          "title": "tarefa 1",
+          "status": "undone",
+          "category": "livros",
+          "id": 3
+        },
+        {
+          "title": "Ler 5 páginas",
+          "status": "undone",
+          "category": "livros",
+          "id": 2
+        }
+      ]
     },
     {
-      "title": "Aula",
-      "status": "done",
-      "category": "redação",
-      "id": 2
+      "id": 2,
+      "nome": "redação",
+      "tarefas": [
+        {
+          "title": "Aula",
+          "status": "done",
+          "category": "redação",
+          "id": 2
+        },
+        {
+          "title": "Conclusão",
+          "status": "undone",
+          "category": "redação",
+          "id": 1
+        },
+        {
+          "title": "Conclusão",
+          "status": "undone",
+          "category": "redação",
+          "id": 3
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "nome": "Português",
+      "tarefas": [
+        {
+          "title": "Aula",
+          "status": "done",
+          "category": "redação",
+          "id": 2
+        },
+        {
+          "title": "Aula",
+          "status": "done",
+          "category": "redação",
+          "id": 3
+        },
+        {
+          "title": "Aula",
+          "status": "done",
+          "category": "redação",
+          "id": 1
+        },
+        {
+          "title": "Figuras de linguagem",
+          "status": "undone",
+          "category": "Português",
+          "id": 4
+        },
+        {
+          "title": "Figuras de linguagem",
+          "status": "undone",
+          "category": "Português",
+          "id": 5
+        }
+      ]
+    },
+    {
+      "nome": "Matemática",
+      "tarefas": [
+        {
+          "title": "bhaskara",
+          "status": "undone",
+          "category": "Matemática",
+          "id": 1
+        },
+        {
+          "title": "Funções",
+          "status": "undone",
+          "category": "Matemática",
+          "id": 2
+        },
+        {
+          "title": "a",
+          "status": "undone",
+          "category": "Matemática",
+          "id": 3
+        }
+      ],
+      "id": 4
     }
   ]
 }

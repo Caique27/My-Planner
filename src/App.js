@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import Lista from "./components/Lista";
-import { ThemeProvider } from "@mui/material";
+import { ThemeProvider, Snackbar, Alert } from "@mui/material";
 import Formularios from "./components/Formularios";
 import theme from "./assets/themes/theme.js";
 import {
@@ -15,6 +15,7 @@ function App() {
   //const [dados,setDados] = useState("")
   const [categorias, setCategorias] = useState([]);
   const [nomesCategorias, setNomesCategorias] = useState([]);
+  const [mensagem, setMensagem] = useState({ error: false, message: "" });
 
   useEffect(() => {
     const atualizarDados = async () => {
@@ -24,6 +25,16 @@ function App() {
 
     atualizarDados();
   }, []);
+
+  function adicionarCategoria(nome) {
+    
+    criarCategoria(nome);
+    
+  }
+
+  async function adicionarTarefa(nome, categoriaEscolhida) {
+    setMensagem(await criarTarefa(nome, categoriaEscolhida));
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -35,8 +46,8 @@ function App() {
           <Formularios
             nomesCategorias={nomesCategorias}
             data={categorias}
-            addCategoria={criarCategoria}
-            addTarefa={criarTarefa}
+            addCategoria={adicionarCategoria}
+            addTarefa={adicionarTarefa}
           />
         </section>
         <main className="App-main">
@@ -44,6 +55,25 @@ function App() {
             <Lista data={categoria} />
           ))}
         </main>
+        <Snackbar
+          open={mensagem.error}
+          autoHideDuration={2500}
+          anchorOrigin={{vertical: 'bottom',
+          horizontal: 'center', }}
+          onClose={()=>setErros({ error: false, message: "" }
+            
+            )}
+        >
+          <Alert
+            onClose={()=>setErros({ error: false, message: "" }
+            
+            )}
+            severity="error"
+            sx={{ width: "100%" }}
+          >
+            {mensagem.message}
+          </Alert>
+        </Snackbar>
       </div>
     </ThemeProvider>
   );

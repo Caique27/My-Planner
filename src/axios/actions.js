@@ -31,7 +31,9 @@ export async function criarCategoria(nome) {
 
 export async function criarTarefa(nome, categoria) {
   if (categoria.length == 0 || nome.length == 0) {
-    console.log("Verifique os dados");
+    
+    return({error:true,message:'Preencha o nome e a categoria'})
+    
   } else {
     var data = await buscarDados();
     var categoriaTarefa;
@@ -67,11 +69,13 @@ export async function criarTarefa(nome, categoria) {
     var listaTarefas = [...categoriaTarefa.tarefas, novaTarefa]
 
     categoriaTarefa.tarefas = listaTarefas
-
-    atualizar(`/categorias/${categoriaTarefa.id}`,categoriaTarefa)
-
-    console.log(
-      `você tentou adicionar a tarefa ${nome} à categoria ${categoria}`
-    )
+    try{
+      atualizar(`/categorias/${categoriaTarefa.id}`,categoriaTarefa)
+    }catch(error){
+      return({error:true,message:"erro ao enviar a tarefa"})
+    }
+    
+    return({error:false,message:''})
+    
   }
 }
