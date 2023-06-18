@@ -15,7 +15,9 @@ function App() {
   //const [dados,setDados] = useState("")
   const [categorias, setCategorias] = useState([]);
   const [nomesCategorias, setNomesCategorias] = useState([]);
-  const [mensagem, setMensagem] = useState({ error: false, message: "" });
+  const [mensagem, setMensagem] = useState({ open: false,
+     error: false,
+      message: "" });
 
   useEffect(() => {
     const atualizarDados = async () => {
@@ -24,7 +26,7 @@ function App() {
     };
 
     atualizarDados();
-  }, []);
+  }, [mensagem]);
 
   function adicionarCategoria(nome) {
     
@@ -56,19 +58,19 @@ function App() {
           ))}
         </main>
         <Snackbar
-          open={mensagem.error}
+          open={mensagem.open}
           autoHideDuration={2500}
           anchorOrigin={{vertical: 'bottom',
           horizontal: 'center', }}
-          onClose={()=>setErros({ error: false, message: "" }
+          onClose={()=>setMensagem({ open:false, error:false, message: "" }
             
             )}
         >
           <Alert
-            onClose={()=>setErros({ error: false, message: "" }
+            onClose={()=>setMensagem({ open:false, error: false, message: "" }
             
             )}
-            severity="error"
+            severity={mensagem.error?"error":"success"}
             sx={{ width: "100%" }}
           >
             {mensagem.message}

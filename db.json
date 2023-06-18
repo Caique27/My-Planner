@@ -1,112 +1,88 @@
 {
   "categorias": [
     {
-      "id": 1,
-      "nome": "livros",
+      "nome": "Livros",
       "tarefas": [
         {
-          "id": 1,
-          "title": "json-server",
-          "status": "done",
-          "category": "livros"
-        },
-        {
-          "title": "tarefa 1",
+          "title": "Hamlet",
           "status": "undone",
-          "category": "livros",
-          "id": 3
-        },
-        {
-          "title": "Ler 5 páginas",
-          "status": "undone",
-          "category": "livros",
-          "id": 2
-        }
-      ]
-    },
-    {
-      "id": 2,
-      "nome": "redação",
-      "tarefas": [
-        {
-          "title": "Aula",
-          "status": "done",
-          "category": "redação",
-          "id": 2
-        },
-        {
-          "title": "Conclusão",
-          "status": "undone",
-          "category": "redação",
+          "category": "Livros",
           "id": 1
         },
         {
-          "title": "Conclusão",
+          "title": "No place to hide",
           "status": "undone",
-          "category": "redação",
-          "id": 3
-        }
-      ]
-    },
-    {
-      "id": 3,
-      "nome": "Português",
-      "tarefas": [
-        {
-          "title": "Aula",
-          "status": "done",
-          "category": "redação",
+          "category": "Livros",
           "id": 2
         },
         {
-          "title": "Aula",
-          "status": "done",
-          "category": "redação",
+          "title": "bezonomics",
+          "status": "undone",
+          "category": "Livros",
           "id": 3
         },
         {
-          "title": "Aula",
-          "status": "done",
-          "category": "redação",
-          "id": 1
-        },
-        {
-          "title": "Figuras de linguagem",
+          "title": "caique",
           "status": "undone",
-          "category": "Português",
+          "category": "Livros",
           "id": 4
         },
         {
-          "title": "Figuras de linguagem",
+          "title": "caique",
           "status": "undone",
-          "category": "Português",
+          "category": "Livros",
           "id": 5
+        },
+        {
+          "title": "sdfgsdfg",
+          "status": "undone",
+          "category": "Livros",
+          "id": 6
+        },
+        {
+          "title": "sdfgsdfg",
+          "status": "undone",
+          "category": "Livros",
+          "id": 7
+        },
+        {
+          "title": "teste",
+          "status": "undone",
+          "category": "Livros",
+          "id": 8
+        },
+        {
+          "title": "testew",
+          "status": "undone",
+          "category": "Livros",
+          "id": 9
+        },
+        {
+          "title": "dfd",
+          "status": "undone",
+          "category": "Livros",
+          "id": 10
         }
-      ]
+      ],
+      "id": 1
     },
     {
-      "nome": "Matemática",
+      "nome": "Cálculo",
       "tarefas": [
         {
-          "title": "bhaskara",
+          "title": "asdfasd",
           "status": "undone",
-          "category": "Matemática",
+          "category": "Cálculo",
           "id": 1
         },
         {
-          "title": "Funções",
+          "title": "limites",
           "status": "undone",
-          "category": "Matemática",
+          "category": "Cálculo",
           "id": 2
-        },
-        {
-          "title": "a",
-          "status": "undone",
-          "category": "Matemática",
-          "id": 3
         }
       ],
-      "id": 4
+      "id": 2
     }
   ]
 }
