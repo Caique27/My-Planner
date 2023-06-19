@@ -16,16 +16,24 @@ export async function listaCategorias() {
 export async function criarCategoria(nome) {
   var nomesCategorias = await listaCategorias();
   if (nome.length == 0) {
-    console.log("você deve inserir um nome para a categoria");
+    
+   
+    return( {open:true,error:true,message:'Preencha o nome da nova categoria'})
   } else if (nomesCategorias.includes(nome)) {
-    console.log(`a categoria ${nome} já existe`);
+ 
+    return( {open:true,error:true,message:`a categoria ${nome} já existe`})
+
   } else {
-    console.log("é possível criar a categoria com o nome ", nome);
+    
     var novaCategoria = {
       nome: nome,
       tarefas: [],
     };
-    adicionar("/categorias", novaCategoria);
+    try{adicionar("/categorias", novaCategoria);
+    }catch(error){
+      return({open:true,error:true,message:"erro ao enviar a tarefa"})
+    }
+    return( {open:true,error:false,message:`A nova categoria foi criada`})
   }
 }
 

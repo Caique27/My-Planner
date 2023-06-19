@@ -28,9 +28,9 @@ function App() {
     atualizarDados();
   }, [mensagem]);
 
-  function adicionarCategoria(nome) {
+  async function adicionarCategoria(nome) {
     
-    criarCategoria(nome);
+    setMensagem(await criarCategoria(nome));
     
   }
 
