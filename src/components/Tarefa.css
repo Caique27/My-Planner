@@ -1,0 +1,19 @@
+.Tarefa-section{
+    border: 1px solid;
+    border-radius: 0.5rem;
+    border-color: #90d3ff;
+    background-color: #24333bf2;
+    flex-grow: 1;
+    margin-left: 0.4rem;
+    margin-right: 0.4rem;
+    margin-top: 0.4rem ;
+    
+}
+.Tarefa-titulo{
+    margin-left: 1rem;
+    margin-bottom: 0;
+}
+.Tarefa-info{
+    margin-left: 0.4rem;
+    
+}

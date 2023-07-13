@@ -1,6 +1,50 @@
 .Lista-div{
-    background: #0F4C75 ;
-    height: 10rem;
-    width: 10rem;
+    display: flex;
+    flex-direction: column;
+    margin-top: 3rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    border: 2px solid;
+    border-radius: 0.5rem;
+    flex-grow: 1;
+    width: 15rem;
+    height: 25rem;
+
+}
+
+.Lista-tarefas{
+  
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    
+}
+
+.Lista-header{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+  }
+  
+ 
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #BBE1FA; 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background:#92acbf; 
+  }
+
+.Lista-titulo{
+    margin-left: 1rem;
+    margin-bottom: 0;
     
 }
