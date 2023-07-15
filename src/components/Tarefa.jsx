@@ -4,6 +4,7 @@ import DoneOutlineIcon from "@mui/icons-material/DoneOutline";
 import DoneIcon from "@mui/icons-material/Done";
 import DeleteIcon from "@mui/icons-material/Delete";
 import IconButton from "@mui/material/IconButton";
+import { Tooltip } from "@mui/material";
 
 function Tarefa({ dados }) {
 	return (
@@ -12,14 +13,20 @@ function Tarefa({ dados }) {
 			<div className="Tarefa-info">
 				<IconButton color="fourth">
 					{dados.status == "done" ? (
-						<DoneOutlineIcon />
+						<Tooltip title="Marcar como não feita" arrow>
+							<DoneOutlineIcon />
+						</Tooltip>
 					) : (
-						<DoneIcon />
+						<Tooltip title="Marcar como feita" arrow>
+							<DoneIcon />
+						</Tooltip>
 					)}
 				</IconButton>
-				<IconButton color="fourth">
-					<DeleteIcon />
-				</IconButton>
+				<Tooltip title="Excluir Tarefa" arrow>
+					<IconButton color="fourth">
+						<DeleteIcon />
+					</IconButton>
+				</Tooltip>
 			</div>
 		</section>
 	);
