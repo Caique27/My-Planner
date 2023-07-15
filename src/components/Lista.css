@@ -23,8 +23,9 @@
 .Lista-header{
   display: flex;
   flex-direction: row;
-  align-items: flex-end;
+  align-items: baseline;
   justify-content: space-between;
+  word-break: break-word;
 }
 
 ::-webkit-scrollbar {
@@ -47,4 +48,9 @@
     margin-left: 1rem;
     margin-bottom: 0;
     
+}
+
+.Lista-icons{
+  display:flex ;
+  flex-direction: row;
 }
