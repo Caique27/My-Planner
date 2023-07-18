@@ -71,6 +71,7 @@ function Lista({ data, deleteCategoria, deleteTarefa }) {
 							variant="outlined"
 							onClick={() => {
 								deleteCategoria(data.id);
+								setOpenDialog(false);
 							}}
 						>
 							Sim, excluir

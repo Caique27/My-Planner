@@ -64,6 +64,7 @@ function Tarefa({ data, deleteTarefa, categoriaId }) {
 							variant="outlined"
 							onClick={() => {
 								deleteTarefa(categoriaId, data.id);
+								setOpenDialog(false);
 							}}
 						>
 							Sim, excluir
