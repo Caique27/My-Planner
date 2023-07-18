@@ -17,3 +17,11 @@
     margin-left: 0.4rem;
     
 }
+.dialog-style{
+    background-color: #1B262C;
+    color: #BBE1FA;
+  }
+  .Tarefa-dialog-buttons{
+    margin-left: 8rem;
+    margin-top: 1rem;
+  }

@@ -13,7 +13,7 @@ import {
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import EditIcon from "@mui/icons-material/Edit";
 
-function Lista({ data, deleteCategoria }) {
+function Lista({ data, deleteCategoria, deleteTarefa }) {
 	const [openDialog, setOpenDialog] = useState(false);
 	return (
 		<div className="Lista-div">
@@ -41,7 +41,11 @@ function Lista({ data, deleteCategoria }) {
 
 			<p className="Lista-tarefas">
 				{data.tarefas.map((tarefa) => (
-					<Tarefa dados={tarefa} />
+					<Tarefa
+						data={tarefa}
+						deleteTarefa={deleteTarefa}
+						categoriaId={data.id}
+					/>
 				))}
 			</p>
 			<Dialog open={openDialog} className="Lista-dialog">

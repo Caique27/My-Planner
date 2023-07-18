@@ -125,3 +125,29 @@ export async function excluirCategoria(id) {
 		message: "Categoria excluída com sucesso",
 	};
 }
+
+export async function excluirTarefa(idCategoria, idTarefa) {
+	var data = await busca(`/categorias/${idCategoria}`);
+	console.log(data);
+
+	for (var task = 0; task < data.tarefas.length; task++) {
+		if (data.tarefas[task].id == idTarefa) {
+			console.log("a tarefa buscada é", data.tarefas[task]);
+			data.tarefas.splice(task, 1);
+		}
+	}
+	try {
+		atualizar(`/categorias/${idCategoria}`, data);
+	} catch {
+		return {
+			open: true,
+			error: true,
+			message: "Falha ao excluir tarefa",
+		};
+	}
+	return {
+		open: true,
+		error: false,
+		message: "Tarefa excluída com sucesso",
+	};
+}

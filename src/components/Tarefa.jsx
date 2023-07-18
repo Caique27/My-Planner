@@ -1,18 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Tarefa.css";
 import DoneOutlineIcon from "@mui/icons-material/DoneOutline";
 import DoneIcon from "@mui/icons-material/Done";
 import DeleteIcon from "@mui/icons-material/Delete";
-import IconButton from "@mui/material/IconButton";
-import { Tooltip } from "@mui/material";
+import {
+	Tooltip,
+	IconButton,
+	Dialog,
+	DialogTitle,
+	DialogContent,
+	DialogContentText,
+	Button,
+} from "@mui/material";
 
-function Tarefa({ dados }) {
+function Tarefa({ data, deleteTarefa, categoriaId }) {
+	const [openDialog, setOpenDialog] = useState(false);
 	return (
 		<section className="Tarefa-section">
-			<h1 className="Tarefa-titulo">{dados.title}</h1>
+			<h1 className="Tarefa-titulo">{data.title}</h1>
 			<div className="Tarefa-info">
 				<IconButton color="fourth">
-					{dados.status == "done" ? (
+					{data.status == "done" ? (
 						<Tooltip title="Marcar como não feita" arrow>
 							<DoneOutlineIcon />
 						</Tooltip>
@@ -23,11 +31,46 @@ function Tarefa({ dados }) {
 					)}
 				</IconButton>
 				<Tooltip title="Excluir Tarefa" arrow>
-					<IconButton color="fourth">
+					<IconButton
+						color="fourth"
+						onClick={() => {
+							setOpenDialog(true);
+						}}
+					>
 						<DeleteIcon />
 					</IconButton>
 				</Tooltip>
 			</div>
+			<Dialog open={openDialog} className="Tarefa-dialog">
+				<DialogTitle className="dialog-style">
+					{"Excluir Tarefa"}
+				</DialogTitle>
+
+				<DialogContent className="dialog-style">
+					<DialogContentText color="fourth" className="dialog-style">
+						Tem certeza que deseja excluir a tarefa?
+					</DialogContentText>
+					<div className="Tarefa-dialog-buttons">
+						<Button
+							color="fourth"
+							onClick={() => {
+								setOpenDialog(false);
+							}}
+						>
+							Não
+						</Button>
+						<Button
+							color="fourth"
+							variant="outlined"
+							onClick={() => {
+								deleteTarefa(categoriaId, data.id);
+							}}
+						>
+							Sim, excluir
+						</Button>
+					</div>
+				</DialogContent>
+			</Dialog>
 		</section>
 	);
 }

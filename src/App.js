@@ -10,8 +10,8 @@ import {
 	criarCategoria,
 	criarTarefa,
 	excluirCategoria,
+	excluirTarefa,
 } from "./axios/actions.js";
-import { excluir } from "./axios/api";
 
 function App() {
 	//const [dados,setDados] = useState("")
@@ -43,6 +43,9 @@ function App() {
 	async function apagarCategoria(id) {
 		setMensagem(await excluirCategoria(id));
 	}
+	async function apagarTarefa(idCategoria, idTarefa) {
+		setMensagem(await excluirTarefa(idCategoria, idTarefa));
+	}
 
 	return (
 		<ThemeProvider theme={theme}>
@@ -63,6 +66,7 @@ function App() {
 						<Lista
 							data={categoria}
 							deleteCategoria={apagarCategoria}
+							deleteTarefa={apagarTarefa}
 						/>
 					))}
 				</main>
