@@ -9,7 +9,9 @@ import {
 	buscarDados,
 	criarCategoria,
 	criarTarefa,
+	excluirCategoria,
 } from "./axios/actions.js";
+import { excluir } from "./axios/api";
 
 function App() {
 	//const [dados,setDados] = useState("")
@@ -38,6 +40,10 @@ function App() {
 		setMensagem(await criarTarefa(nome, categoriaEscolhida));
 	}
 
+	async function apagarCategoria(id) {
+		setMensagem(await excluirCategoria(id));
+	}
+
 	return (
 		<ThemeProvider theme={theme}>
 			<div>
@@ -54,7 +60,10 @@ function App() {
 				</section>
 				<main className="App-main">
 					{categorias.map((categoria) => (
-						<Lista data={categoria} />
+						<Lista
+							data={categoria}
+							deleteCategoria={apagarCategoria}
+						/>
 					))}
 				</main>
 				<Snackbar

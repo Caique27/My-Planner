@@ -1,22 +1,22 @@
 .Lista-div{
-    display: flex;
-    flex-direction: column;
-    margin-top: 3rem;
-    margin-left: 1rem;
-    margin-right: 1rem;
-    border: 2px solid;
-    border-radius: 0.5rem;
-    flex-grow: 1;
-    width: 15rem;
-    height: 25rem;
+  display: flex;
+  flex-direction: column;
+  margin-top: 3rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  border: 2px solid;
+  border-radius: 0.5rem;
+  flex-grow: 1;
+  width: 15rem;
+  height: 25rem;
 
 }
 
 .Lista-tarefas{
   
-    display: flex;
-    flex-direction: column;
-    overflow: auto;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
     
 }
 
@@ -35,7 +35,7 @@
  
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: #BBE1FA; 
+    background: #7eafcf; 
     border-radius: 10px;
   }
   
@@ -53,4 +53,14 @@
 .Lista-icons{
   display:flex ;
   flex-direction: row;
+}
+
+
+.dialog-style{
+  background-color: #1B262C;
+  color: #BBE1FA;
+}
+.Lista-dialog-buttons{
+  margin-left: 8rem;
+  margin-top: 1rem;
 }
