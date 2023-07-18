@@ -1,20 +1,13 @@
 import React, { useState } from "react";
 import Tarefa from "./Tarefa.jsx";
+import ExcludeDialog from "./Dialogs/ExcludeDialog.jsx";
 import "./Lista.css";
-import {
-	Button,
-	IconButton,
-	Tooltip,
-	Dialog,
-	DialogTitle,
-	DialogContent,
-	DialogContentText,
-} from "@mui/material";
+import { Button, IconButton, Tooltip, Dialog } from "@mui/material";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import EditIcon from "@mui/icons-material/Edit";
 
 function Lista({ data, deleteCategoria, deleteTarefa }) {
-	const [openDialog, setOpenDialog] = useState(false);
+	const [openDialog, setOpenDialog] = useState("none");
 	return (
 		<div className="Lista-div">
 			<header className="Lista-header">
@@ -25,7 +18,7 @@ function Lista({ data, deleteCategoria, deleteTarefa }) {
 						<IconButton
 							color="fourth"
 							onClick={() => {
-								setOpenDialog(true);
+								setOpenDialog("Exclude");
 							}}
 						>
 							<DeleteOutlineIcon />
@@ -48,37 +41,15 @@ function Lista({ data, deleteCategoria, deleteTarefa }) {
 					/>
 				))}
 			</p>
-			<Dialog open={openDialog} className="Lista-dialog">
-				<DialogTitle className="dialog-style">
-					{"Excluir Categoria"}
-				</DialogTitle>
-
-				<DialogContent className="dialog-style">
-					<DialogContentText color="fourth" className="dialog-style">
-						Tem certeza que deseja excluir a categoria?
-					</DialogContentText>
-					<div className="Lista-dialog-buttons">
-						<Button
-							color="fourth"
-							onClick={() => {
-								setOpenDialog(false);
-							}}
-						>
-							Não
-						</Button>
-						<Button
-							color="fourth"
-							variant="outlined"
-							onClick={() => {
-								deleteCategoria(data.id);
-								setOpenDialog(false);
-							}}
-						>
-							Sim, excluir
-						</Button>
-					</div>
-				</DialogContent>
-			</Dialog>
+			<ExcludeDialog
+				open={openDialog == "Exclude"}
+				closeDialog={() => {
+					setOpenDialog("none");
+				}}
+				deleteCategoria={() => {
+					deleteCategoria(data.id);
+				}}
+			/>
 		</div>
 	);
 }
