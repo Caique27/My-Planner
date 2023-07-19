@@ -88,6 +88,7 @@ function Formularios(props) {
 					variant="outlined"
 					color="fourth"
 					focused
+					sx={{ input: { color: "white" } }}
 					onChange={(event) => {
 						setNomeCategoria(event.target.value);
 					}}
