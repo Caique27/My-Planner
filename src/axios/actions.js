@@ -128,11 +128,9 @@ export async function excluirCategoria(id) {
 
 export async function excluirTarefa(idCategoria, idTarefa) {
 	var data = await busca(`/categorias/${idCategoria}`);
-	console.log(data);
 
 	for (var task = 0; task < data.tarefas.length; task++) {
 		if (data.tarefas[task].id == idTarefa) {
-			console.log("a tarefa buscada é", data.tarefas[task]);
 			data.tarefas.splice(task, 1);
 		}
 	}
@@ -149,5 +147,40 @@ export async function excluirTarefa(idCategoria, idTarefa) {
 		open: true,
 		error: false,
 		message: "Tarefa excluída com sucesso",
+	};
+}
+
+export async function renomearCategoria(id, novoNome) {
+	//
+	try {
+		var data = await busca(`/categorias/${id}`);
+		var nomesCategorias = await listaCategorias();
+		if (nomesCategorias.includes(novoNome)) {
+			return {
+				open: true,
+				error: true,
+				message: "Já existe uma categoria com este nome",
+			};
+		}
+		if (novoNome == "") {
+			return {
+				open: true,
+				error: true,
+				message: "Você deve inserir um nome",
+			};
+		}
+		data.nome = novoNome;
+		atualizar(`/categorias/${data.id}`, data);
+	} catch {
+		return {
+			open: true,
+			error: true,
+			message: "Erro ao atualizar tarefa",
+		};
+	}
+	return {
+		open: true,
+		error: false,
+		message: "Tarefa atualizada com sucesso",
 	};
 }

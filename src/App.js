@@ -11,6 +11,7 @@ import {
 	criarTarefa,
 	excluirCategoria,
 	excluirTarefa,
+	renomearCategoria,
 } from "./axios/actions.js";
 
 function App() {
@@ -21,6 +22,10 @@ function App() {
 		open: false,
 		error: false,
 		message: "",
+		helperText: {
+			show: false,
+			text: "",
+		},
 	});
 
 	useEffect(() => {
@@ -46,6 +51,9 @@ function App() {
 	async function apagarTarefa(idCategoria, idTarefa) {
 		setMensagem(await excluirTarefa(idCategoria, idTarefa));
 	}
+	async function renameCategoria(id, novoNome) {
+		setMensagem(await renomearCategoria(id, novoNome));
+	}
 
 	return (
 		<ThemeProvider theme={theme}>
@@ -67,6 +75,8 @@ function App() {
 							data={categoria}
 							deleteCategoria={apagarCategoria}
 							deleteTarefa={apagarTarefa}
+							renameCategoria={renameCategoria}
+							mensagem={mensagem}
 						/>
 					))}
 				</main>

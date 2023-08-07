@@ -1,12 +1,19 @@
 import React, { useState } from "react";
 import Tarefa from "./Tarefa.jsx";
 import ExcludeDialog from "./Dialogs/ExcludeDialog.jsx";
+import RenameDialog from "./Dialogs/RenameDialog.jsx";
 import "./Lista.css";
 import { Button, IconButton, Tooltip, Dialog } from "@mui/material";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import EditIcon from "@mui/icons-material/Edit";
 
-function Lista({ data, deleteCategoria, deleteTarefa }) {
+function Lista({
+	data,
+	deleteCategoria,
+	deleteTarefa,
+	renameCategoria,
+	mensagem,
+}) {
 	const [openDialog, setOpenDialog] = useState("none");
 	return (
 		<div className="Lista-div">
@@ -25,7 +32,12 @@ function Lista({ data, deleteCategoria, deleteTarefa }) {
 						</IconButton>
 					</Tooltip>
 					<Tooltip title="Renomear Categoria" arrow>
-						<IconButton color="fourth">
+						<IconButton
+							color="fourth"
+							onClick={() => {
+								setOpenDialog("Rename");
+							}}
+						>
 							<EditIcon />
 						</IconButton>
 					</Tooltip>
@@ -49,6 +61,15 @@ function Lista({ data, deleteCategoria, deleteTarefa }) {
 				deleteCategoria={() => {
 					deleteCategoria(data.id);
 				}}
+			/>
+			<RenameDialog
+				open={openDialog == "Rename"}
+				closeDialog={() => {
+					setOpenDialog("none");
+				}}
+				renameCategoria={renameCategoria}
+				idCategoria={data.id}
+				mensagem={mensagem}
 			/>
 		</div>
 	);
