@@ -13,6 +13,7 @@ function Lista({
 	deleteTarefa,
 	renameCategoria,
 	mensagem,
+	changeStatus,
 }) {
 	const [openDialog, setOpenDialog] = useState("none");
 	return (
@@ -49,7 +50,9 @@ function Lista({
 					<Tarefa
 						data={tarefa}
 						deleteTarefa={deleteTarefa}
+						changeStatus={changeStatus}
 						categoriaId={data.id}
+						tarefaId={tarefa.id}
 					/>
 				))}
 			</p>

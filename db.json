@@ -4,6 +4,18 @@
       "nome": "Livros",
       "tarefas": [
         {
+          "title": "hgjdghhtfsdafasdfhhahahb",
+          "status": "undone",
+          "category": "Livros",
+          "id": 3
+        },
+        {
+          "title": "1984",
+          "status": "undone",
+          "category": "Livros",
+          "id": 4
+        },
+        {
           "title": "fsdafasdf",
           "status": "undone",
           "category": "Livros",
@@ -14,12 +26,6 @@
           "status": "undone",
           "category": "Livros",
           "id": 2
-        },
-        {
-          "title": "hgjdghhtfsdafasdfhhahahb",
-          "status": "undone",
-          "category": "Livros",
-          "id": 3
         }
       ],
       "id": 1
@@ -35,7 +41,7 @@
         },
         {
           "title": "hahh",
-          "status": "undone",
+          "status": "done",
           "category": "Provas",
           "id": 3
         }

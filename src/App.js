@@ -12,6 +12,7 @@ import {
 	excluirCategoria,
 	excluirTarefa,
 	renomearCategoria,
+	mudarStatus,
 } from "./axios/actions.js";
 
 function App() {
@@ -54,6 +55,9 @@ function App() {
 	async function renameCategoria(id, novoNome) {
 		setMensagem(await renomearCategoria(id, novoNome));
 	}
+	async function changeStatus(idCategoria, idTarefa) {
+		setMensagem(await mudarStatus(idCategoria, idTarefa));
+	}
 
 	return (
 		<ThemeProvider theme={theme}>
@@ -76,6 +80,7 @@ function App() {
 							deleteCategoria={apagarCategoria}
 							deleteTarefa={apagarTarefa}
 							renameCategoria={renameCategoria}
+							changeStatus={changeStatus}
 							mensagem={mensagem}
 						/>
 					))}

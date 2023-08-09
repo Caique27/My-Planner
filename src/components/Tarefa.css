@@ -25,3 +25,7 @@
     margin-left: 8rem;
     margin-top: 1rem;
   }
+
+.Tarefa-done{
+    text-decoration:line-through ;
+}

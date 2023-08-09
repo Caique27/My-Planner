@@ -13,13 +13,26 @@ import {
 	Button,
 } from "@mui/material";
 
-function Tarefa({ data, deleteTarefa, categoriaId }) {
+function Tarefa({ data, deleteTarefa, changeStatus, categoriaId, tarefaId }) {
 	const [openDialog, setOpenDialog] = useState(false);
 	return (
 		<section className="Tarefa-section">
-			<h1 className="Tarefa-titulo">{data.title}</h1>
+			<h1
+				className={
+					data.status == "done"
+						? "Tarefa-titulo Tarefa-done"
+						: "Tarefa-titulo"
+				}
+			>
+				{data.title}
+			</h1>
 			<div className="Tarefa-info">
-				<IconButton color="fourth">
+				<IconButton
+					color="fourth"
+					onClick={() => {
+						changeStatus(categoriaId, tarefaId);
+					}}
+				>
 					{data.status == "done" ? (
 						<Tooltip title="Marcar como não feita" arrow>
 							<DoneOutlineIcon />

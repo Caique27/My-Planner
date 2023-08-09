@@ -184,3 +184,47 @@ export async function renomearCategoria(id, novoNome) {
 		message: "Tarefa atualizada com sucesso",
 	};
 }
+
+export async function mudarStatus(idCategoria, idTarefa) {
+	
+
+	try {
+
+var categoria = await busca(`/categorias/${idCategoria}`);
+	var tarefaEscolhida;
+	for (var c = 0; c < categoria.tarefas.length; c++) {
+		if (categoria.tarefas[c].id == idTarefa) {
+			tarefaEscolhida = categoria.tarefas[c];
+			categoria.tarefas.splice(c, 1);
+			if (tarefaEscolhida.status == "done") {
+				tarefaEscolhida.status = "undone";
+			} else {
+				tarefaEscolhida.status = "done";
+			}
+			categoria.tarefas = [
+				...categoria.tarefas.slice(0, c),
+				tarefaEscolhida,
+				...categoria.tarefas.slice(c),
+			];
+			break;
+		}
+	}
+
+
+
+
+
+		atualizar(`/categorias/${categoria.id}`, categoria);
+		return {
+			open: false,
+			error: false,
+			message: ``,
+		};
+	} catch {
+		return {
+			open: true,
+			error: true,
+			message: `Erro ao atualizar tarefa`,
+		};
+	}
+}
