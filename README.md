@@ -1,70 +1,66 @@
-# Getting Started with Create React App
+# MyPlanner
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este projeto é uma página Web construída em React.js que utiliza conceitos de preenchimento de formulários, renderização condicional e requisições HTTP para prover ao usuário uma solução virtual de gerenciamento de tarefas pessoais hospedada em nuvem.
 
-## Available Scripts
+A página pode ser acessada através da URL: https://my-planner.onrender.com ou iniciada localmente(Veja a Seção "Rodando Localmente")
 
-In the project directory, you can run:
+A API que conecta o projeto ao Backend pode ser acessada através da URL: https://planner-api-cosp.onrender.com e seu código está disponível em: https://github.com/Caique27/Planner-API/
 
-### `npm start`
+## Stack utilizada
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+![JavaScript](https://img.shields.io/badge/-JavaScript-333333?style=for-the-badge&logo=javascript)
+![Node](https://img.shields.io/badge/-Node-333333?style=for-the-badge&logo=Node.js)
+![React.js](https://img.shields.io/badge/-React.js-333333?style=for-the-badge&logo=React)
+![Axios](https://img.shields.io/badge/-Axios-333333?style=for-the-badge&logo=Axios)
+![Render](https://img.shields.io/badge/-Render-333333?style=for-the-badge&logo=Render)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Rodando localmente
 
-### `npm test`
+Clone o projeto
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+  git clone https://github.com/Caique27/My-Planner.git
+```
 
-### `npm run build`
+Entre no diretório do projeto
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+  cd My-Planner
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Instale as dependências
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+  npm install
+```
 
-### `npm run eject`
+Inicie a aplicação
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+  npm start
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Acesse através da URL:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+  https://localhost:3000/
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Demonstração da aplicação
 
-## Learn More
+![](./demo/demo.gif)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Funcionalidades
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+-   Criar e apagar tarefas e categorias de maneira intuitiva através de formulários
+-   Renomear Categorias
+-   Marcar tarefas como feitas
+-   Hospedagem virtual que dispensa instalação para acessar os recursos da aplicação
 
-### Code Splitting
+## Contato
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Pesquise pelo nome de usuário ou clique nos ícones.
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[![GitHub](https://img.shields.io/badge/-Caique27-333333?style=for-the-badge&logo=github)](https://github.com/Caique27)
+[![LinkedIn](https://img.shields.io/badge/-Caique%20Alves-blue?style=for-the-badge&logo=LinkedIn)](https://www.linkedin.com/in/caique-alves-/)
+![GitHub](https://img.shields.io/badge/-caiquealvesdesouza27@gmail.com-red?style=for-the-badge&logo=gmail&logoColor=white)
