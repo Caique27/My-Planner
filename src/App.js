@@ -29,10 +29,21 @@ function App() {
 		},
 	});
 
+	async function listaNomes() {
+		var dados = await listaCategorias();
+
+		var lista = [];
+		for (var c = 0; c < dados.length; c++) {
+			lista.push(dados[c].name);
+		}
+		return lista;
+	}
+
 	useEffect(() => {
 		const atualizarDados = async () => {
 			setCategorias(await buscarDados());
-			setNomesCategorias(await listaCategorias());
+
+			setNomesCategorias(await listaNomes());
 		};
 
 		atualizarDados();
@@ -49,14 +60,14 @@ function App() {
 	async function apagarCategoria(id) {
 		setMensagem(await excluirCategoria(id));
 	}
-	async function apagarTarefa(idCategoria, idTarefa) {
-		setMensagem(await excluirTarefa(idCategoria, idTarefa));
+	async function apagarTarefa(idTarefa) {
+		setMensagem(await excluirTarefa(idTarefa));
 	}
 	async function renameCategoria(id, novoNome) {
 		setMensagem(await renomearCategoria(id, novoNome));
 	}
-	async function changeStatus(idCategoria, idTarefa) {
-		setMensagem(await mudarStatus(idCategoria, idTarefa));
+	async function changeStatus(idTarefa) {
+		setMensagem(await mudarStatus(idTarefa));
 	}
 
 	return (

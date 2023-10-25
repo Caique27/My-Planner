@@ -13,13 +13,14 @@ import {
 	Button,
 } from "@mui/material";
 
-function Tarefa({ data, deleteTarefa, changeStatus, categoriaId, tarefaId }) {
+function Tarefa({ data, deleteTarefa, changeStatus, tarefaId }) {
 	const [openDialog, setOpenDialog] = useState(false);
+	console.log(data.status);
 	return (
 		<section className="Tarefa-section">
 			<h1
 				className={
-					data.status == "done"
+					data.status == "Done"
 						? "Tarefa-titulo Tarefa-done"
 						: "Tarefa-titulo"
 				}
@@ -30,10 +31,10 @@ function Tarefa({ data, deleteTarefa, changeStatus, categoriaId, tarefaId }) {
 				<IconButton
 					color="fourth"
 					onClick={() => {
-						changeStatus(categoriaId, tarefaId);
+						changeStatus(tarefaId);
 					}}
 				>
-					{data.status == "done" ? (
+					{data.status == "Done" ? (
 						<Tooltip title="Marcar como não feita" arrow>
 							<DoneOutlineIcon />
 						</Tooltip>
@@ -76,7 +77,7 @@ function Tarefa({ data, deleteTarefa, changeStatus, categoriaId, tarefaId }) {
 							color="fourth"
 							variant="outlined"
 							onClick={() => {
-								deleteTarefa(categoriaId, data.id);
+								deleteTarefa(tarefaId);
 								setOpenDialog(false);
 							}}
 						>

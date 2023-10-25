@@ -19,7 +19,7 @@ function Lista({
 	return (
 		<div className="Lista-div">
 			<header className="Lista-header">
-				<h1 className="Lista-titulo">{data.nome}</h1>
+				<h1 className="Lista-titulo">{data.name}</h1>
 
 				<section className="Lista-icons">
 					<Tooltip title="Excluir Categoria" arrow>
@@ -46,7 +46,7 @@ function Lista({
 			</header>
 
 			<p className="Lista-tarefas">
-				{data.tarefas.map((tarefa) => (
+				{data.tasks.map((tarefa) => (
 					<Tarefa
 						data={tarefa}
 						deleteTarefa={deleteTarefa}

@@ -1,20 +1,25 @@
 import { busca, adicionar, atualizar, excluir } from "./api.js";
 
 export async function buscarDados() {
-	return await busca("/categorias");
+	return await busca("/tasks/get");
+}
+
+export async function buscarCategorias() {
+	return await busca("/categories/get");
 }
 
 export async function listaCategorias() {
-	var categorias = [];
-	var data = await buscarDados();
-	for (var cat = 0; cat < data.length; cat++) {
-		categorias.push(data[cat].nome);
-	}
-	return categorias;
+	var data = await buscarCategorias();
+	return data;
 }
 
 export async function criarCategoria(nome) {
-	var nomesCategorias = await listaCategorias();
+	var nomesCategorias = [];
+	var categorias = await listaCategorias();
+	for (var c = 0; c < categorias.length; c++) {
+		nomesCategorias.push(categorias[c].name);
+	}
+
 	if (nome.length == 0) {
 		return {
 			open: true,
@@ -29,11 +34,10 @@ export async function criarCategoria(nome) {
 		};
 	} else {
 		var novaCategoria = {
-			nome: nome,
-			tarefas: [],
+			name: nome,
 		};
 		try {
-			adicionar("/categorias", novaCategoria);
+			adicionar("/categories/create", novaCategoria);
 		} catch (error) {
 			return {
 				open: true,
@@ -57,28 +61,21 @@ export async function criarTarefa(nome, categoria) {
 			message: "Preencha o nome e a categoria",
 		};
 	} else {
-		var data = await buscarDados();
-		var categoriaTarefa;
-		for (var c = 0; c < data.length; c++) {
-			if (data[c].nome == categoria) {
-				categoriaTarefa = data[c];
+		var idCategoria;
+		var categorias = await buscarCategorias();
+		for (var c = 0; c < categorias.length; c++) {
+			if (categorias[c].name == categoria) {
+				idCategoria = categorias[c].id;
 			}
 		}
 
-		var listaIDs = [];
-
 		var novaTarefa = {
 			title: nome,
-			status: "undone",
-			category: categoria,
-			id: getLowestId(),
+			category_id: idCategoria,
 		};
 
-		var listaTarefas = [...categoriaTarefa.tarefas, novaTarefa];
-
-		categoriaTarefa.tarefas = listaTarefas;
 		try {
-			atualizar(`/categorias/${categoriaTarefa.id}`, categoriaTarefa);
+			adicionar(`/tasks/create`, novaTarefa);
 		} catch (error) {
 			return {
 				open: true,
@@ -93,25 +90,10 @@ export async function criarTarefa(nome, categoria) {
 			message: "Tarefa enviada com sucesso",
 		};
 	}
-
-	function getLowestId() {
-		for (var a = 0; a < categoriaTarefa.tarefas.length; a++) {
-			listaIDs.push(categoriaTarefa.tarefas[a].id);
-		}
-		if (listaIDs.length == 0) {
-			return 1;
-		} else {
-			for (var c = 1; c <= listaIDs.length + 1; c++) {
-				if (!listaIDs.includes(c)) {
-					return c;
-				}
-			}
-		}
-	}
 }
 export async function excluirCategoria(id) {
 	try {
-		await excluir(`/categorias/${id}`);
+		await excluir(`/categories/delete/${id}`);
 	} catch {
 		return {
 			open: true,
@@ -126,16 +108,10 @@ export async function excluirCategoria(id) {
 	};
 }
 
-export async function excluirTarefa(idCategoria, idTarefa) {
-	var data = await busca(`/categorias/${idCategoria}`);
-
-	for (var task = 0; task < data.tarefas.length; task++) {
-		if (data.tarefas[task].id == idTarefa) {
-			data.tarefas.splice(task, 1);
-		}
-	}
+export async function excluirTarefa(idTarefa) {
+	console.log(idTarefa);
 	try {
-		atualizar(`/categorias/${idCategoria}`, data);
+		excluir(`/tasks/delete/${idTarefa}`);
 	} catch {
 		return {
 			open: true,
@@ -153,8 +129,11 @@ export async function excluirTarefa(idCategoria, idTarefa) {
 export async function renomearCategoria(id, novoNome) {
 	//
 	try {
-		var data = await busca(`/categorias/${id}`);
-		var nomesCategorias = await listaCategorias();
+		var nomesCategorias = [];
+		var categorias = await listaCategorias();
+		for (var c = 0; c < categorias.length; c++) {
+			nomesCategorias.push(categorias[c].name);
+		}
 		if (nomesCategorias.includes(novoNome)) {
 			return {
 				open: true,
@@ -169,8 +148,8 @@ export async function renomearCategoria(id, novoNome) {
 				message: "Você deve inserir um nome",
 			};
 		}
-		data.nome = novoNome;
-		atualizar(`/categorias/${data.id}`, data);
+
+		atualizar(`/categories/change/${id}`, { name: novoNome });
 	} catch {
 		return {
 			open: true,
@@ -181,44 +160,17 @@ export async function renomearCategoria(id, novoNome) {
 	return {
 		open: true,
 		error: false,
-		message: "Tarefa atualizada com sucesso",
+		message: "Categoria atualizada com sucesso",
 	};
 }
 
-export async function mudarStatus(idCategoria, idTarefa) {
-	
-
+export async function mudarStatus(idTarefa) {
 	try {
-
-var categoria = await busca(`/categorias/${idCategoria}`);
-	var tarefaEscolhida;
-	for (var c = 0; c < categoria.tarefas.length; c++) {
-		if (categoria.tarefas[c].id == idTarefa) {
-			tarefaEscolhida = categoria.tarefas[c];
-			categoria.tarefas.splice(c, 1);
-			if (tarefaEscolhida.status == "done") {
-				tarefaEscolhida.status = "undone";
-			} else {
-				tarefaEscolhida.status = "done";
-			}
-			categoria.tarefas = [
-				...categoria.tarefas.slice(0, c),
-				tarefaEscolhida,
-				...categoria.tarefas.slice(c),
-			];
-			break;
-		}
-	}
-
-
-
-
-
-		atualizar(`/categorias/${categoria.id}`, categoria);
+		atualizar(`/tasks/change/${idTarefa}`, { body: 0 });
 		return {
-			open: false,
+			open: true,
 			error: false,
-			message: ``,
+			message: "Tarefa atualizada com sucesso",
 		};
 	} catch {
 		return {

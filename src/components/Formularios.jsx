@@ -10,10 +10,8 @@ function Formularios(props) {
 
 	function enviarTarefa(nome, categoriaEscolhida) {
 		props.addTarefa(nome, categoriaEscolhida);
-		console.log("tarefa enviada");
 	}
 	function enviarCategoria(nome) {
-		console.log("o nome da categoria enviada é", nome);
 		props.addCategoria(nome);
 	}
 	return (
